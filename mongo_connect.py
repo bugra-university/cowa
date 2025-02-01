@@ -2,21 +2,21 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
-# .env dosyasını yükle
+# Load .env file
 load_dotenv()
 
-# MongoDB URI'sini al
+# Get MongoDB URI
 uri = os.getenv("MONGO_URI")
 
 try:
-    # MongoDB'ye bağlan
+    # Connect to MongoDB
     client = MongoClient(uri)
-    db = client["db"]  # Veritabanı adı "db"
-    print("✅ MongoDB bağlantısı başarılı!")
+    db = client["db"]  # Database name "db"
+    print("✅ MongoDB connection successful!")
 
-    # Koleksiyon örneği
+    # Collection instance
     projects_collection = db["projects"]
     for document in projects_collection.find():
         print(document)
 except Exception as e:
-    print(f"❌ MongoDB bağlantısı başarısız: {e}")
+    print(f"❌ MongoDB connection failed: {e}")
